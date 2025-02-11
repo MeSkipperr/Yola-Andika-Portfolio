@@ -16,6 +16,8 @@ export default {
         darkBg:'#202025',
         second:'#06a4ff',
         third:'#8756ff',
+        persianPink:"#f991cc",
+        lavenderPink:"#ffdafc"
       },
       minHeight: {
         '0': '0',
