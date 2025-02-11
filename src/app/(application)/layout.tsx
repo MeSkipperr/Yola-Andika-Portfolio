@@ -3,10 +3,9 @@ import "../globals.css";
 import "../index.css";
 import { DarkModeProvider } from "@/context/DarkModeContext";
 import { LanguageProvider } from "@/context/Language";
-// import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "I Kadek Yola Andika",
+  title: "I Kadek Yola Andika | Applications",
   description: "Application",
 };
 
@@ -22,7 +21,6 @@ export default function RootLayout({
           <LanguageProvider>
             <div className=" flex  items-center flex-col bg-primary dark:bg-darkBg ">
               {children}
-              {/* <Footer/> */}
             </div>
           </LanguageProvider>
           </DarkModeProvider>

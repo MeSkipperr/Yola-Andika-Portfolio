@@ -37,6 +37,15 @@
     src: url(/font/kaftan-trial.otf);
 }
 
+@font-face{
+    font-family: "Rubik-Bubbles";
+    src: url(/font/RubikBubbles-Regular.ttf);
+}
+
+.font-rubik-bubbles {
+    font-family: "Rubik-Bubbles", sans-serif;
+}
+
 .fontKaftan{
     font-family: "Kaftan" ;
 }
