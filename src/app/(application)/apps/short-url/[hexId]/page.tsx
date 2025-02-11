@@ -14,6 +14,9 @@ export default function Page() {
         const fetchShortUrl = async () => {
             try {
                 const response = await axios.get("/api/apps/short-url", {
+                    headers: {
+                        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`, // Replace with actual token
+                    },
                     params: { value: params.hexId }
                 });
                 console.log(response)

@@ -33,7 +33,7 @@ const ShortUrl = () => {
                 return;
             }
             const response = await axios.post("/api/apps/short-url", { url }, {
-                headers: { Authorization: process.env.NEXT_PUBLIC_API_KEY },
+                headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`},
             });
 
             if (response.status !== 200) {
