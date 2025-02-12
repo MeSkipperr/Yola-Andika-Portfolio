@@ -3,7 +3,6 @@ import { useDarkMode } from "@/context/DarkModeContext";
 import { useLanguage } from "@/context/Language";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 type FooterProps = {
     darkColor?: string;
@@ -20,16 +19,7 @@ const Footer = ({
 }: FooterProps) => {
     const { language } = useLanguage();  
     const { isDarkMode } = useDarkMode();
-    
-    const [currentPath, setCurrentPath] = useState('');
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            setCurrentPath(window.location.pathname);
-        }
-    }, []);
-
-    const pathUrl = () => (currentPath === '/' ? '#' : '/');
 
     return (
         <>
@@ -53,10 +43,10 @@ const Footer = ({
                         <div className="flex flex-col lg:px-12">
                             <p className="text-lg sm:text-3xl" style={{ color: textColor }}>Tautan</p>
                             <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href="/">{language ? 'Beranda' : 'Home'}</Link>
-                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href={`${pathUrl()}about`}>{language ? 'Tentang' : 'About'}</Link>
-                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href={`${pathUrl()}service`}>{language ? 'Layanan' : 'Service'}</Link>
-                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href={`${pathUrl()}project`}>{language ? 'Proyek' : 'Project'}</Link>
-                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href="/contact">{language ? 'Kontak' : 'Contact'}</Link>
+                            <a className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href={`/#about`}>{language ? 'Tentang' : 'About'}</a>
+                            <a className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href={`/#service`}>{language ? 'Layanan' : 'Service'}</a>
+                            <a className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href={`/connection`}>{language ? 'Koneksi' : 'Connection'}</a>
+                            <a className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} href="/contact">{language ? 'Kontak' : 'Contact'}</a>
                         </div>
                         <div className="flex flex-col lg:px-12">
                             <p className="text-lg sm:text-3xl" style={{ color: textColor }}>Sosial</p>
