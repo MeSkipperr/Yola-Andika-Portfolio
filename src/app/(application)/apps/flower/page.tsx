@@ -44,7 +44,7 @@ const Apps = () => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const [count, setCount] = useState<number>(2);
+    const [count, setCount] = useState<number>(0);
     const [sayYes, setSayYes] = useState<boolean>(false);
 
     const moveNoButton = () => {
@@ -72,19 +72,19 @@ const Apps = () => {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`, // Replace with actual token
             },
-            params: { noCount : count }
+            params: { noCount: count }
         });
-        if(res.status === 200) return setSayYes(true)
-        
+        if (res.status === 200) return setSayYes(true)
+
     }
 
     if (!isOpen) {
         return (
             <div className="w-full h-dvh relative bg-lavenderPink flex justify-center flex-col items-center gap-8">
-                <AnimatedText /> 
-                <button 
-                onClick={()=>setIsOpen(true)}
-                className="py-4 px-6 btn font-rubik-bubbles bg-persianPink rounded-full text-lavenderPink text-2xl hover:text-persianPink hover:bg-lavenderPink hover:py-8 hover:px-10">
+                <AnimatedText />
+                <button
+                    onClick={() => setIsOpen(true)}
+                    className="py-4 px-6 btn font-rubik-bubbles bg-persianPink rounded-full text-lavenderPink text-2xl hover:text-persianPink hover:bg-lavenderPink hover:py-8 hover:px-10">
                     <IoPawSharp />
                     OPEN
                     <IoPawSharp />
@@ -95,7 +95,7 @@ const Apps = () => {
 
     return (
         <>
-            {sayYes?
+            {sayYes ?
                 <div className="absolute inset-0 bg-lavenderPink z-20 flex justify-center items-center flex-col">
                     <div className="w-full h-1/2 flex justify-center items-center flex-row">
                         <Image
@@ -109,66 +109,66 @@ const Apps = () => {
                     <h1 className="font-rubik-bubbles text-persianPink text-6xl">THANK YOU</h1>
                 </div>
                 :
-                <div className="w-full h-auto relative bg-lavenderPink flex justify-center flex-col lg:flex-row ">
-                <iframe src="/html/flower/flower.html" className="w-full h-dvh"></iframe>
-                <div className="w-full lg:w-2/4 h-dvh bg-lavenderPink flex justify-center items-center flex-col px-2">
-                    <div className="w-full h-1/2 flex justify-center items-center flex-row">
-                        <Image
-                            src="/assets/gif/sun-flower.gif"
-                            alt="sun-flower-gif"
-                            width={1000}
-                            height={1000}
-                            className="w-1/2 aspect-square"
-                        />
-                        <Image
-                            src="/assets/gif/cat-please.gif"
-                            alt="sun-flower-gif"
-                            width={1000}
-                            height={1000}
-                            className="w-1/2 aspect-square"
-                        />
-                    </div>
-                    <div className="w-full h-1/2 flex items-center flex-col text-persianPink relative overflow-hidden mb-10">
-                        <h1 className="font-rubik-bubbles tracking-wider text-2xl">Will you be my Valentine?</h1>
-                        <div className={`w-full h-full justify-center  flex gap-8 relative ${firstClick ? "flex-col items-center" : "items-start "}`}>
-                            <button
-                                className="bg-green-400 text-white rounded-md font-bold tracking-wider px-4 py-2 z-10"
-                                style={{
-                                    fontSize: `${yesButtonScale}rem`,
-                                    maxWidth: "100vw",
-                                    maxHeight: "100vh",
-                                    transition: "font-size 0.3s ease-in-out"
-                                }}
-                                onClick={fetchData}
-                            >
-                                YES
-                            </button>
-                            {firstClick ?
-                                <div ref={containerRef} className="w-full flex-1 flex relative overflow-hidden">
+                <div className="w-full h-auto relative bg-lavenderPink flex justify-center items-center flex-col  ">
+                    <iframe src="/html/flower/flower.html" className="w-full h-dvh"></iframe>
+                    <div className="w-full lg:w-2/4 h-[150dvh] bg-lavenderPink flex justify-center items-center flex-col px-2">
+                        <div className="w-full  flex justify-center items-center flex-row">
+                            <Image
+                                src="/assets/gif/sun-flower.gif"
+                                alt="sun-flower-gif"
+                                width={1000}
+                                height={1000}
+                                className="w-1/2 lg:w-1/4 aspect-square"
+                            />
+                            <Image
+                                src="/assets/gif/cat-please.gif"
+                                alt="sun-flower-gif"
+                                width={1000}
+                                height={1000}
+                                className="w-1/2 lg:w-1/4 aspect-square"
+                            />
+                        </div>
+                        <div className="w-full h-1/2 flex items-center flex-col text-persianPink relative overflow-hidden mb-10">
+                            <h1 className="font-rubik-bubbles tracking-wider text-2xl lg:text-4xl">Will you be my Valentine?</h1>
+                            <div className={`w-full h-full justify-center  flex gap-8 relative ${firstClick ? "flex-col items-center" : "items-start "}`}>
+                                <button
+                                    className="bg-green-400 text-white rounded-md font-bold tracking-wider px-4 py-2 z-10"
+                                    style={{
+                                        fontSize: `${yesButtonScale}rem`,
+                                        maxWidth: "100vw",
+                                        maxHeight: "100vh",
+                                        transition: "font-size 0.3s ease-in-out"
+                                    }}
+                                    onClick={fetchData}
+                                >
+                                    YES
+                                </button>
+                                {firstClick ?
+                                    <div ref={containerRef} className="w-full flex-1 flex relative overflow-hidden">
+                                        <button
+                                            className="bg-red-400 text-white w-16 py-2 rounded-md font-bold tracking-wider absolute"
+                                            onClick={moveNoButton}
+                                            style={noButtonStyle || { top: "0px", left: "0px" }}
+                                        >
+                                            NO
+                                        </button>
+                                    </div>
+                                    :
                                     <button
-                                        className="bg-red-400 text-white w-16 py-2 rounded-md font-bold tracking-wider absolute"
-                                        onClick={moveNoButton}
+                                        className="bg-red-400 text-white w-16 py-2 rounded-md font-bold tracking-wider "
+                                        onClick={() => {
+                                            setYesButtonScale((prevScale) => Math.min(prevScale + 1, 100)); // Maksimum 10rem
+                                            setFirstClick(true)
+                                        }}
                                         style={noButtonStyle || { top: "0px", left: "0px" }}
                                     >
                                         NO
                                     </button>
-                                </div>
-                                :
-                                <button
-                                    className="bg-red-400 text-white w-16 py-2 rounded-md font-bold tracking-wider "
-                                    onClick={() => {
-                                        setYesButtonScale((prevScale) => Math.min(prevScale + 1, 100)); // Maksimum 10rem
-                                        setFirstClick(true)
-                                    }}
-                                    style={noButtonStyle || { top: "0px", left: "0px" }}
-                                >
-                                    NO
-                                </button>
-                            }
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             }
             <Footer
                 transitionColor={false}
