@@ -1,3 +1,4 @@
+import { isValidEmail } from "@/utils/validator";
 import { NextResponse } from "next/server";
 import nodemailer from 'nodemailer';
 
@@ -12,16 +13,16 @@ const transporter = nodemailer.createTransport({
 export async function GET(request: Request) {
     const url = new URL(request.url);
     const count: string = url.searchParams.get('noCount') ?? "";
-    console.log(count);
+    const email: string = url.searchParams.get("email")??"";
 
-    if (!count || count.trim() === "") {
+    if (!count || count.trim() === "" || !isValidEmail(email)) {
         return NextResponse.json({ message: 'Invalid value provided' }, { status: 400 });
     }
 
     try {
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: process.env.EMAIL_USER,
+            to: email,
             subject: "Valentine Confirmation",
             text: `
             I confirm my participation for Valentine's Day.  

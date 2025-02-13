@@ -9,6 +9,14 @@ import axios from "axios";
 import { verifyToken } from "@/utils/api/jwt";
 import { useParams, useRouter } from "next/navigation";
 
+interface DecodedToken {
+    decoded: {
+        email: string;
+        // Tambahkan properti lain jika diperlukan
+    };
+    // Tambahkan properti lain jika ada
+}
+
 const AnimatedText = () => {
     const text = "I Have Something".split("");
     const [letters, setLetters] = useState<{ char: string; delay: number }[]>([]);
@@ -46,7 +54,7 @@ const Apps = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [count, setCount] = useState<number>(0);
     const [sayYes, setSayYes] = useState<boolean>(false);
-    const [decodedToken, setDecodedToken] = useState(false);
+    const [decodedToken, setDecodedToken] = useState<DecodedToken>();
 
     const params = useParams();
     const token = params.token as string;
@@ -62,12 +70,11 @@ const Apps = () => {
 
                 const result = await verifyToken(token);
 
-                console.log("result : ", result)
                 if (!result || result.status !== 200) {
                     router.push("/apps/flower");
                     return;
                 }
-                setDecodedToken(true);
+                setDecodedToken(result.data);
 
             } catch (error) {
                 console.log("Error verifying token:", error);
@@ -75,11 +82,13 @@ const Apps = () => {
             }
         }
         fetchTokenVerification();
-    }, [token, router]);
+    }, []);
 
     if (!decodedToken) {
         return <div>Verifying token...</div>;
     }
+
+    console.log(decodedToken)
 
     const moveNoButton = () => {
         if (containerRef.current) {
@@ -105,7 +114,10 @@ const Apps = () => {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`, // Replace with actual token
             },
-            params: { noCount: count }
+            params: { 
+                noCount: count, 
+                email:decodedToken.decoded.email 
+            }
         });
         if (res.status === 200) return setSayYes(true);
     };
