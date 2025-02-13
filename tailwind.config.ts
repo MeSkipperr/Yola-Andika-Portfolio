@@ -17,7 +17,8 @@ export default {
         second:'#06a4ff',
         third:'#8756ff',
         persianPink:"#f991cc",
-        lavenderPink:"#ffdafc"
+        lavenderPink:"#ffdafc",
+        softGray:"#E5E7EB",
       },
       minHeight: {
         '0': '0',
