@@ -19,6 +19,6 @@ export const applicationData = (language: boolean): CardInterface[] => {
                 ? "Aplikasi untuk memilih dan mengirim bunga digital spesial di Hari Valentine."
                 : "An application to select and send special digital flowers on Valentine's Day.",
             url: "/apps/flower"
-        }
+        },
     ];
 };
