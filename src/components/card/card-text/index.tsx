@@ -25,6 +25,7 @@ const TextCardList = ({ data }: TextCardProps) => {
 
     useEffect(() => {
         document.body.style.overflow = `${isOpen?"hidden":"auto"}`;
+        console.log(selectItem)
         
         return () =>{
             document.body.style.overflow = 'auto';
