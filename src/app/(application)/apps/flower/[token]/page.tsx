@@ -172,8 +172,8 @@ const Apps = () => {
                                 className="w-1/2 lg:w-1/4 aspect-square"
                             />
                         </div>
-                        <div className="w-full h-1/2 flex items-center flex-col text-persianPink relative overflow-hidden mb-10">
-                            <h1 className="font-rubik-bubbles tracking-wider text-2xl lg:text-4xl">Will you be my Valentine?</h1>
+                        <div className="w-full h-1/2 flex items-center justify-center flex-col text-persianPink relative overflow-hidden mb-10">
+                            <h1 className="font-rubik-bubbles w-full flex justify-center items-center tracking-wider text-2xl lg:text-4xl">Will you go on a date on February 15th?</h1>
                             <div className={`w-full h-full justify-center  flex gap-8 relative ${firstClick ? "flex-col items-center" : "items-start "}`}>
                                 <button
                                     className="bg-green-400 text-white rounded-md font-bold tracking-wider px-4 py-2 z-10"
