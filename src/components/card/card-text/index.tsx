@@ -62,7 +62,7 @@ const TextCardList = ({ data }: TextCardProps) => {
             </div>
             {isOpen &&
                 <div className="absolute inset-0  bg-primary flex justify-center ">
-                    <div className="w-full lg:w-1/2  bg-primary py-4 px-4  flex items-center flex-col">
+                    {/* <div className="w-full lg:w-1/2  bg-primary py-4 px-4  flex items-center flex-col">
                         <span className="w-full flex justify-end text-red-500 text-2xl font-bold cursor-pointer" 
                         onClick={()=>setIsOpen(false)}
                         >x</span>
@@ -78,7 +78,7 @@ const TextCardList = ({ data }: TextCardProps) => {
                                 </Link>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
             }
         </>
