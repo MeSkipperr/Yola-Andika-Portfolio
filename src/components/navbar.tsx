@@ -87,6 +87,7 @@ const Navbar = () => {
                 <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/`}>{language ? 'BERANDA' : 'HOME'}</a>
                 <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/#about`}>{language ? 'TENTANG ' : 'ABOUT'}</a>
                 <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/#service`}>{language ? 'LAYANAN' : 'SERVICE'}</a>
+                <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/apps`}>{language ? 'APP' : 'APPS'}</a>
                 <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/connection`}>{language ? 'KONEKSI' : 'CONNECTION'}</a>
 
                 <label className="language-label cursor-pointer text-lg  font-semibold dark:text-primary">
