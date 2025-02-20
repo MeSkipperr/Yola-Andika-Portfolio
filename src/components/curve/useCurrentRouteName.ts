@@ -14,7 +14,8 @@ export const useCurrentRouteName = () => {
             "/": "Home",
             "/contact": "Contact",
             "/connection": "Connection",
-            "/debug":"Debug"
+            "/library":"Library",
+            "/apps":"Application",
         } as const;
 
         // Tangani hash dinamis pada "/"
@@ -58,7 +59,7 @@ export const useCurrentRouteName = () => {
                 : capitalizeFirstLetter(routeName);
         }
 
-        return null;
+        return "";
     }, [pathname]);
 
     return routeWithHash;

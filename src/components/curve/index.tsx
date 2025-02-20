@@ -37,7 +37,7 @@ const Curve = ({ children }: CurveProps) => {
 
     const currentRoute = useCurrentRouteName();
 
-    if (!isClient || !currentRoute) return null; 
+    if (!isClient ) return null; 
 
     return (
         <div className="page curve z-10" style={{ backgroundColor: "#000" }}>

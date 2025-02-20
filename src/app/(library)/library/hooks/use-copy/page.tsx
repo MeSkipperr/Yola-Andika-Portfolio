@@ -2,7 +2,7 @@
 import CodeBlock from "@/components/code-block";
 import { useLanguage } from "@/context/Language";
 
-const sampleCode = `
+const codeSyntax = `
 import { useState } from "react";
 
 const useCopy = (text: string) => {
@@ -24,48 +24,46 @@ const useCopy = (text: string) => {
 export default useCopy;
 `;
 
-const LibraryPage = () => {
+const Page = () => {
     const { language } = useLanguage();
     return ( 
-        <div className="w-full px-4 py-6 space-y-4">
-            <h1 className="text-4xl">useCopy</h1>
-            <p className="text-base text-gray-700 dark:text-gray-300">
-                <code>useCopy</code> {language
-                ? "adalah custom hook React untuk menyalin teks ke clipboard dan memberi umpan balik kepada pengguna apakah teks berhasil disalin atau tidak."
-                : "is a custom React hook to copy text to the clipboard and give feedback to the user whether the text was successfully copied or not."}
-            </p>
-            
-            <h2 className="text-2xl">{language ? "Penggunaan" : "Usage"}</h2>
+        <div className="w-full px-4 py-6 space-y-4 dark:text-white">
+            <h1 className="text-4xl">Copy to Clipboard Hook</h1>
+            <code>hooks/useCopy.ts</code>
             <p className="text-base">
-                {language ? "Import hook ke dalam komponen yang membutuhkan fungsi copy ke clipboard."
-                : "Import the hook into the component that needs the copy-to-clipboard function."}
+                {language
+                ? "File ini berisi custom hook yang memungkinkan pengguna menyalin teks ke clipboard dengan mudah."
+                : "This file contains a custom hook that allows users to copy text to the clipboard easily."}
             </p>
-            <CodeBlock code={sampleCode} language="typescript" />
+            <CodeBlock language="typescript" code={codeSyntax} />
             
-            <h2 className="text-2xl">{language ? "Contoh Implementasi" : "Example Implementation"}</h2>
-            <CodeBlock 
-                code={`
-import React from "react";
-import useCopy from "./useCopy";
+            {/* Implementation Section */}
+            <h2 className="text-3xl">{language ? "Implementasi" : "Implementation"}</h2>
+            
+            {/* Using useCopy Hook */}
+            <h3 className="text-xl">{language ? "Menggunakan useCopy Hook" : "Using useCopy Hook"}</h3>
+            <CodeBlock language="typescript" code={`
+import useCopy from "@/hooks/useCopy";
 
-const Example = () => {
-    const { copied, copyToClipboard } = useCopy("Hello, World!");
+const Component = () => {
+    const { copied, copyToClipboard } = useCopy("Hello, world!");
     
     return (
         <div>
-            <button onClick={copyToClipboard} className="px-4 py-2 bg-blue-600 text-white rounded">
-                {copied ? "Copied!" : "Copy Text"}
-            </button>
+            <button onClick={copyToClipboard}>Copy Text</button>
+            {copied && <span>Copied!</span>}
+        </div>
+    );
+};
+            `}/>
+            <p>{language ? "Hook" : "The hook"} <code>useCopy</code> {language ? "memungkinkan Anda menyalin teks ke clipboard dan memberi tahu pengguna ketika teks berhasil disalin." : "allows you to copy text to the clipboard and notifies the user when the text is successfully copied."}</p>
+            <ul className="ml-8 list-disc">
+                <li><code>text</code>: {language ? "Teks yang akan disalin ke clipboard." : "The text to be copied to the clipboard."}</li>
+                <li><code>copied</code>: {language ? "Status boolean yang menunjukkan apakah teks telah disalin." : "A boolean state indicating if the text has been copied."}</li>
+                <li><code>copyToClipboard</code>: {language ? "Fungsi untuk menyalin teks ke clipboard." : "Function to copy the text to the clipboard."}</li>
+            </ul>
         </div>
     );
 };
 
-export default Example;
-                `} 
-                language="typescript" 
-            />
-        </div>
-    );
-};
-
-export default LibraryPage;
+export default Page;

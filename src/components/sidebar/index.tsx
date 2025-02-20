@@ -28,13 +28,12 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
                     </div>
                 ))}
             </div>
-            <div className="w-full lg:w-3/4 place-content-end px-2 ">
+            <div className="w-full lg:w-3/4 px-2 ">
                 <div className="w-full h-20"></div>
                 <button className="flex justify-center items-center py-8 dark:text-white text-lg lg:hidden" onClick={()=>setIsOpen(true)}>
                     <IoIosArrowForward/> Menu
                 </button>
                 <ul className="w-full flex justify-start items-center dark:text-white py-2">
-                    <IoIosArrowForward className="mx-1" />
                     <li key={0} className="flex items-center  hover:text-second">
                         <Link href="/" className="hover:underline">
                             Home
@@ -51,14 +50,13 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
 
                         return (
                             <li key={index} className="flex items-center hover:text-second">
-                                {index > 0 && <IoIosArrowForward className="mx-1" />}
                                 <Link href={formattedPath} className="hover:underline">
                                     {label}
                                 </Link>
+                                <IoIosArrowForward className="mx-1" />
                             </li>
                         );
                     })}
-                    <IoIosArrowForward className="mx-1" />
                 </ul>
                 {children}
                 

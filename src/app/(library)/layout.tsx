@@ -6,6 +6,7 @@ import { DarkModeProvider } from "@/context/DarkModeContext";
 import { LanguageProvider } from "@/context/Language";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
+import Curve from "@/components/curve";
 
 export const metadata: Metadata = {
     title: "I Kadek Yola Andika | Library",
@@ -22,12 +23,15 @@ export default function RootLayout({
             <body>
                 <DarkModeProvider>
                     <LanguageProvider>
-                        <Navbar/>
-                        <div className="fontGeist  w-full flex flex-col  items-center justify-center  bg-primary dark:bg-darkBg relative">
-                            <Sidebar>
-                                {children}
-                            </Sidebar>
-                        </div>
+                        <Curve>
+                            <Navbar/>
+                            <div className="fontGeist  w-full flex flex-col  items-center justify-center dark:text-white  bg-primary dark:bg-darkBg relative">
+                                <Sidebar>
+                                    {children}
+                                    <div className="w-full h-32"></div>
+                                </Sidebar>
+                            </div>
+                        </Curve>
                     </LanguageProvider>
                 </DarkModeProvider>
             </body>

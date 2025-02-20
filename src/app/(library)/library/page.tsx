@@ -1,36 +1,73 @@
+"use client"
 import CodeBlock from "@/components/code-block";
-
-const sampleCode = `
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula, solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-
-type CodeBlockType = {
-    code: string;
-    language?: string;
-};
-
-const CodeBlock = ({ language = "tsx", code }: CodeBlockType) => {
-    return (
-        <div className="py-4 px-1 rounded-xl shadow-md overflow-auto bg-white dark:bg-gray-900">
-            <SyntaxHighlighter language={language} style={typeof window !== "undefined" && document.documentElement.classList.contains("dark") ? dracula : solarizedlight}>
-                {code}
-            </SyntaxHighlighter>
-        </div>
-    );
-};
-
-export default CodeBlock;
-
-`;
+import { useLanguage } from "@/context/Language";
+import Link from "next/link";
 
 const LibraryPage = () => {
+    const { language } = useLanguage();
+
     return ( 
-        <>
-            <div className="w-full h-dvh px-2 ">
-                <CodeBlock code={sampleCode}/>  
-            </div>
-            <div className="w-full h-dvh bg-persianPink"></div>
-        </>
+        <div className="gap-4 flex flex-col">
+            <h1 className="text-4xl">Library</h1>
+            <p className="text-base">
+                {language
+                ? "Halaman ini adalah kumpulan kode yang dapat digunakan untuk membantu proses pengembangan. Termasuk di dalamnya berbagai komponen, fungsi, pustaka, konteks, dan hook yang dapat digunakan secara langsung dalam proyek Anda."
+                : "This page is a collection of code that can be used to assist in the development process. It includes various components, functions, libraries, contexts, and hooks that can be directly used in your project."}
+            </p>
+            
+            <h1 className="text-4xl">Instalasi</h1>
+            <p className="text-base">
+                {language
+                ? "Untuk menggunakan pustaka ini, Anda dapat menginstalnya dengan perintah berikut:"
+                : "To use this library, you can install it using the following command:"}
+            </p>
+            <CodeBlock code="npm install @yola-andika" language="bash"/>
+            
+            <h1 className="text-4xl">Components</h1>
+            <p className="text-base">
+                {language
+                ? "Komponen yang dapat digunakan dalam proyek Anda."
+                : "Components that can be used in your project."}
+            </p>
+            <Link href="/library/component">{"Home > Library > Components"}</Link>
+            <CodeBlock code="import {} from '@yola-andika/components'" language="javascript"/>
+            
+            <h1 className="text-4xl">Functions</h1>
+            <p className="text-base">
+                {language
+                ? "Fungsi yang siap digunakan untuk berbagai kebutuhan pengembangan."
+                : "Pre-built functions ready to be used for various development needs."}
+            </p>
+            <Link href="/library/function">{"Home > Library > Functions"}</Link>
+            <CodeBlock code="import {} from '@yola-andika/functions'" language="javascript"/>
+            
+            <h1 className="text-4xl">Libraries</h1>
+            <p className="text-base">
+                {language
+                ? "Pustaka yang menyediakan berbagai utilitas dan alat bantu."
+                : "Libraries that provide various utilities and tools."}
+            </p>
+            <Link href="/library/libs">{"Home > Library > Libraries"}</Link>
+            <CodeBlock code="import {} from '@yola-andika/libs'" language="javascript"/>
+            
+            <h1 className="text-4xl">Context</h1>
+            <p className="text-base">
+                {language
+                ? "Konteks yang dapat digunakan untuk manajemen state global."
+                : "Context that can be used for global state management."}
+            </p>
+            <Link href="/library/context">{"Home > Library > Context"}</Link>
+            <CodeBlock code="import {} from '@yola-andika/context'" language="javascript"/>
+            
+            <h1 className="text-4xl">Hooks</h1>
+            <p className="text-base">
+                {language
+                ? "Hook kustom yang dapat digunakan untuk mengelola logika dalam aplikasi React."
+                : "Custom hooks that can be used to manage logic in React applications."}
+            </p>
+            <Link href="/library/hooks">{"Home > Library > Hooks"}</Link>
+            <CodeBlock code="import {} from '@yola-andika/hooks'" language="javascript"/>
+        </div>
     );
 }
 

@@ -14,28 +14,12 @@ export const SidebarContent: SidebarSection[] = [
         title:"Components",
         path:"/library/components",
         items:[
-            {
-                content:"Input Field",
-                path:"/library/components/input-field"
-            },
-            {
-                content:"Curved Transition",
-                path:"/library/components/curve-transitions"
-            },
-            {
-                content:"Code Block",
-                path:"/library/components/code-block"
-            },
         ]
     },
     {
         title:"Functions",
         path:"/library/functions",
         items:[
-            {
-                content:"Function 1",
-                path:"/library/functions/function1"
-            },
         ]
     },
     {

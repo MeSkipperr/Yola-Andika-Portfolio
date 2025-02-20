@@ -3,6 +3,7 @@ import "../globals.css";
 import "../index.css";
 import { DarkModeProvider } from "@/context/DarkModeContext";
 import { LanguageProvider } from "@/context/Language";
+import Curve from "@/components/curve";
 
 export const metadata: Metadata = {
   title: "I Kadek Yola Andika | Applications",
@@ -19,9 +20,11 @@ export default function RootLayout({
       <body>
         <DarkModeProvider>
           <LanguageProvider>
-            <div className=" flex  items-center flex-col bg-primary dark:bg-darkBg ">
-              {children}
-            </div>
+            <Curve>
+              <div className=" flex  items-center flex-col bg-primary dark:bg-darkBg ">
+                {children}
+              </div>
+            </Curve>
           </LanguageProvider>
           </DarkModeProvider>
       </body>
