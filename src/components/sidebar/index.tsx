@@ -13,7 +13,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
 
     return (
         <div className="w-full lg:w-3/4 min-h-dvh flex  relative ">
-            <div className={`z-10 px-2 w-3/4 gap-4 flex flex-grow flex-col h-dvh overflow-y-auto bg-white dark:bg-darkBg fixed lg:sticky lg:w-1/4  top-0 pt-28 transform transition-transform ease-in-out duration-300  ${!isOpen ? "-translate-x-full lg:translate-x-0" : "translate-x-0"} `}>
+            <div className={`z-10 px-2 w-3/4 gap-4 flex flex-grow flex-col h-dvh overflow-y-auto bg-primary dark:bg-darkBg fixed lg:sticky lg:w-1/4  top-0 pt-28 transform transition-transform ease-in-out duration-300  ${!isOpen ? "-translate-x-full lg:translate-x-0" : "translate-x-0"} `}>
             <button className="flex items-center dark:text-white text-lg lg:hidden" onClick={()=>setIsOpen(false)}>
                 <IoIosArrowForward className="rotate-180" /> Menu
             </button>
