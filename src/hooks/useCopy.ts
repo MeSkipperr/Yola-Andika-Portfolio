@@ -9,7 +9,7 @@ const useCopy = (text: string) => {
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
-            console.error("Gagal menyalin teks", err);
+            console.error("Failed to copy text", err);
         }
     };
 
