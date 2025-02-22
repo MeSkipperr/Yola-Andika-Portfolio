@@ -1,47 +1,17 @@
 "use client"
 import CodeBlock from "@/components/code-block";
+import UIShowing from "@/components/ui-showing";
 import { useLanguage } from "@/context/Language";
 
-const codeSyntax = `
-"use client";
-import { useDarkMode } from "@/context/DarkModeContext";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula, vs } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { MdOutlineContentCopy } from "react-icons/md";
-import useCopy from "@/hooks/useCopy";
-
-type CodeBlockType = {
-    code: string;
-    language?: string;
-};
-
-const CodeBlock = ({ language = "tsx", code }: CodeBlockType) => {
-    const { isDarkMode } = useDarkMode();
-    const { copied, copyToClipboard } = useCopy(code);
-
-    return (
-        <div className="relative flex h-auto w-full flex-col justify-center items-center px-1 rounded-sm shadow-[0_3px_10px_rgb(0,0,0,0.2)] overflow-auto bg-white dark:bg-darkBg">
-            <div className="w-full text-lg px-2 p-1 flex justify-between dark:text-white items-center">
-                <span className="text-base">{language}</span>
-                <button onClick={copyToClipboard}>
-                    {copied ? <p className="text-sm">Copied..</p> : <MdOutlineContentCopy />}
-                </button>
-            </div>
-            <div className="w-full relative overflow-x-auto">
-                <SyntaxHighlighter 
-                    language={language} 
-                    style={isDarkMode ? dracula : vs}
-                    customStyle={{ fontSize: "14px", width: "100%", overflowX: "auto" }}
-                >
-                    {code}
-                </SyntaxHighlighter>
-            </div>
-        </div>
-    );
-};
-
-export default CodeBlock;
-`;
+const content = [
+    {
+        language: "javascript",
+        code: `
+console.log("Hello World")
+        `,
+        fileName: "fileName.js"
+    },
+]
 
 const Page = () => {
     const { language } = useLanguage();
@@ -49,22 +19,77 @@ const Page = () => {
         <div className="w-full px-4 py-6 space-y-4 dark:text-white">
             <h1 className="text-4xl">Code Block Component</h1>
             <code>components/code-block.tsx</code>
-            <p className="text-base">
-                {language
-                ? "File ini berisi komponen CodeBlock yang digunakan untuk menampilkan potongan kode dengan penyorotan sintaks dan tombol salin ke clipboard."
-                : "This file contains the CodeBlock component used to display code snippets with syntax highlighting and a copy-to-clipboard button."}
-            </p>
-            <CodeBlock language="tsx" code={codeSyntax}/>
+            <UIShowing>
+                <CodeBlock content={content} />
+            </UIShowing>
             
-            {/* Usage Example */}
-            <h2 className="text-3xl">{language ? "Implementasi" : "Implementation"}</h2>
-            <h3 className="text-xl">{language ? "Menggunakan CodeBlock dalam komponen lain" : "Using CodeBlock in another component"}</h3>
-            <CodeBlock language="tsx" code={`<CodeBlock language="tsx" code={\"const message = 'Hello, world!'; console.log(message);\"} />`}/>
-            <p>{language ? "Komponen" : "The"} <code>CodeBlock</code> {language ? "dapat digunakan untuk menampilkan kode dengan tampilan yang menarik dan fitur salin cepat." : "component can be used to display code with a clean look and quick copy feature."}</p>
-            <ul className="ml-8 list-disc">
-                <li><code>language</code>: {language ? "Bahasa sintaks yang akan disorot." : "The syntax language to highlight."}</li>
-                <li><code>code</code>: {language ? "Kode yang akan ditampilkan." : "The code snippet to be displayed."}</li>
+            {/* Section: Usage */}
+            <h2 className="text-3xl">{language ? "Cara Penggunaan" : "Usage"}</h2>
+            <p>
+                {language ? "Berikut adalah contoh penggunaan " : "Here is an example of how to use "} 
+                <code>CodeBlock</code> {language ? "di dalam file" : " in a file "} <code>.tsx</code>.
+            </p>
+            <CodeBlock content={[{
+                language: "jsx",
+                code: `
+<CodeBlock 
+    content=[
+        {
+            code: "const user = getLocalStorage<{ id: number; name: string }>("user");\nconsole.log(user);",
+            language: "typescript",
+            fileName: "localStorage.ts"
+        }
+    ]
+/>
+                `,
+                fileName: "example.tsx"
+            }]} />
+            <p>
+                {language ? "Kode di atas akan menampilkan blok kode dengan syntax highlighting untuk TypeScript, serta menampilkan nama file " : "The above code will display a code block with TypeScript syntax highlighting and show the file name "}
+                <code>localStorage.ts</code>.
+            </p>
+            
+            {/* Section: Parameters Explanation */}
+            <h2 className="text-3xl">{language ? "Parameter dan Fungsinya" : "Parameters and Their Functions"}</h2>
+            <ul className="list-disc pl-5">
+                <li>
+                    <code>content</code> - {language ? "Array berisi objek kode yang akan ditampilkan." : "An array containing code objects to be displayed."}
+                </li>
+                <li>
+                    <code>className</code> - {language ? "Menambahkan class tambahan untuk styling kustom." : "Adds an extra class for custom styling."}
+                </li>
+                <li>
+                    <code>theme</code> - {language ? "Menentukan tema tampilan kode (dark atau light)." : "Defines the code block theme (dark or light)."}
+                </li>
+                <li>
+                    <code>style</code> - {language ? "Menambahkan styling inline ke komponen." : "Adds inline styling to the component."}
+                </li>
+                <li>
+                    <code>fontSize</code> - {language ? "Menentukan ukuran font dalam blok kode." : "Defines the font size in the code block."}
+                </li>
             </ul>
+            
+            {/* Section: Example with Additional Props */}
+            <h2 className="text-3xl">{language ? "Contoh Penggunaan dengan Properti Tambahan" : "Example Usage with Additional Properties"}</h2>
+            <CodeBlock content={[{
+                language: "tsx",
+                code: `
+<CodeBlock 
+    content=[
+        {
+            code: "console.log(\"Styled CodeBlock\");",
+            language: "javascript",
+            fileName: "styledExample.js"
+        }
+    ]
+    className="rounded-lg border p-2"
+    theme="dark"
+    fontSize="14px"
+/>
+                `,
+                fileName: "example-props.tsx"
+            }]} />
+            <p>{language ? "Kode di atas menampilkan blok kode dengan class tambahan, tema dark, dan ukuran font yang lebih kecil." : "The above code displays a code block with additional styling, a dark theme, and a smaller font size."}</p>
         </div>
     );
 };

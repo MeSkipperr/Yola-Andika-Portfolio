@@ -2,7 +2,10 @@
 import CodeBlock from "@/components/code-block";
 import { useLanguage } from "@/context/Language";
 
-const codeSyntax = `
+const content = [
+    {
+        language:"tsx",
+        code:`
 "use client"
 import React, { createContext, useContext, useEffect, useState } from "react";
 
@@ -44,8 +47,9 @@ export const useDarkMode = () => {
         throw new Error("useDarkMode must be used within a DarkModeProvider");
     }
     return context;
-};
-`;
+};`
+    },
+]
 
 const Page = () => {
     const { language } = useLanguage();
@@ -58,13 +62,16 @@ const Page = () => {
                     ? "File ini berisi hook dan provider untuk mengelola mode gelap (dark mode) dalam aplikasi React menggunakan konteks."
                     : "This file contains a hook and provider for managing dark mode in a React application using context."}
             </p>
-            <CodeBlock language="typescript" code={codeSyntax} />
+            <CodeBlock content={content} />
             
             <h2 className="text-3xl">{language ? "Implementasi" : "Implementation"}</h2>
             
             <h3 className="text-xl">{language ? "Menggunakan Dark Mode dalam Komponen" : "Using Dark Mode in a Component"}</h3>
-            <CodeBlock language="typescript" code={`const { isDarkMode, toggleDarkMode } = useDarkMode();
-<button onClick={toggleDarkMode}>{isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}</button>`} />
+            <CodeBlock content={[{
+                language:"tsx",
+                code:`const { isDarkMode, toggleDarkMode } = useDarkMode();
+<button onClick={toggleDarkMode}>{isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}</button>`
+            }]}  />
             <p>
                 {language
                     ? "Fungsi "
@@ -76,9 +83,12 @@ const Page = () => {
             </p>
 
             <h3 className="text-xl">{language ? "Menyediakan Dark Mode di Aplikasi" : "Providing Dark Mode in the Application"}</h3>
-            <CodeBlock language="typescript" code={`<DarkModeProvider>
-  <App />
-</DarkModeProvider>`} />
+            <CodeBlock content={[{
+                language:"tsx",
+                code:`<DarkModeProvider>
+    <App />
+</DarkModeProvider>`
+            }]}  />
             <p>
                 {language
                     ? "Komponen "

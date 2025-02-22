@@ -82,11 +82,27 @@ const Page = () => {
                 :"This file contains utility functions for managing data storage in the browser’s localStorage. These functions allow you to store, retrieve, delete, and clear data easily."
                 }
             </p>
-            <CodeBlock language="typescript" code={codeSyntax}/>
+            <CodeBlock content={
+                [
+                    {
+                        code:codeSyntax,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             {/* Storing Data */}
             <h2 className="text-3xl">{language ? "Implementasi" : "Implementation"}</h2>
             <h3 className="text-xl">{language ? "Menyimpan data ke localStorage" : "Storing data in localStorage"}</h3>
-            <CodeBlock language="typescript" code={`setLocalStorage("user", { id: 1, name: "Jhon" });`}/>
+            <CodeBlock content={
+                [
+                    {
+                        code:`
+setLocalStorage("user", { id: 1, name: "Jhon" });
+                        `,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             <p>{language ? "Fungsi" : "The"} <code>setLocalStorage</code> {language ? "menyimpan data dalam" : "function stores data in"} <code>localStorage</code>.</p>
             <ul className="ml-8 list-disc">
                 <li><code>key</code>: {language ? "Nama kunci penyimpanan." : "The storage key name."}</li>
@@ -95,8 +111,17 @@ const Page = () => {
 
             {/* Retrieving Data */}
             <h3 className="text-xl">{language ? "Mengambil data dari localStorage" : "Retrieving data from localStorage"}</h3>
-            <CodeBlock language="typescript" code={`const user = getLocalStorage<{ id: number; name: string }>("user");
-console.log(user);`}/>
+            <CodeBlock content={
+                [
+                    {
+                        code:`
+const user = getLocalStorage<{ id: number; name: string }>("user");
+console.log(user);
+                        `,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             <p>{language ? "Fungsi" : "The"} <code>getLocalStorage</code> {language ? "mengambil data yang tersimpan di" : "retrieves stored data from"} <code>localStorage</code>.</p>
             <ul className="ml-8 list-disc">
                 <li><code>key</code>: {language ? "Nama kunci penyimpanan." : "The storage key name."}</li>
@@ -105,7 +130,16 @@ console.log(user);`}/>
             
             {/* Removing Data */}
             <h3 className="text-xl">{language ? "Menghapus data dari localStorage" : "Removing data from localStorage"}</h3>
-            <CodeBlock language="typescript" code={`removeLocalStorage("user");`}/>
+            <CodeBlock content={
+                [
+                    {
+                        code:`
+removeLocalStorage("user");
+                        `,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             <p>{language ? "Fungsi" : "The"} <code>removeLocalStorage</code> {language ? "menghapus item yang tersimpan berdasarkan kunci yang diberikan." : "removes the stored item based on the given key."}</p>
             <ul className="ml-8 list-disc">
                 <li><code>key</code>: {language ? "Nama kunci yang akan dihapus." : "The key name to remove."}</li>
@@ -113,7 +147,16 @@ console.log(user);`}/>
             
             {/* Clearing Data */}
             <h3 className="text-xl">{language ? "Menghapus semua data dari localStorage" : "Clearing all data from localStorage"}</h3>
-            <CodeBlock language="typescript" code={`clearLocalStorage();`}/>
+            <CodeBlock content={
+                [
+                    {
+                        code:`
+clearLocalStorage();
+                        `,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             <p>{language ? "Fungsi" : "The"} <code>clearLocalStorage</code> {language ? "menghapus semua data yang tersimpan di" : "clears all stored data in"} <code>localStorage</code>.</p>
         </div>
     );

@@ -43,19 +43,33 @@ const Page = () => {
                 ? "Hook ini digunakan untuk mendeteksi jenis perangkat berdasarkan lebar layar."
                 : "This hook is used to detect the device type based on screen width."}
             </p>
-            <CodeBlock language="typescript" code={codeSyntax} />
+            <CodeBlock content={
+                [
+                    {
+                        code:codeSyntax,
+                        language:"tsx"
+                    }
+                ]
+            }/>
 
             {/* Usage Section */}
             <h2 className="text-3xl">{language ? "Implementasi" : "Implementation"}</h2>
             <h3 className="text-xl">{language ? "Menggunakan hook di dalam komponen" : "Using the hook inside a component"}</h3>
-            <CodeBlock language="typescript" code={`
+            <CodeBlock content={
+                [
+                    {
+                        code:`
 import { useIsDevice } from "@/hooks/useIsDevice";
 
 const Component = () => {
     const device = useIsDevice();
     return <p>Device type: {device}</p>;
 };
-`} />
+                        `,
+                        language:"tsx"
+                    }
+                ]
+            }/>
             <p>{language ? "Hook" : "The hook"} <code>useIsDevice</code> {language ? "mengembalikan jenis perangkat yang sedang digunakan." : "returns the current device type."}</p>
             <ul className="ml-8 list-disc">
                 <li>{language ? "Mengembalikan salah satu dari \"mobile\", \"tablet\", atau \"desktop\"." : "Returns one of 'mobile', 'tablet', or 'desktop'."}</li>

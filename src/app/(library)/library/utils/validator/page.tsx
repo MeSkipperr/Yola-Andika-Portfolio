@@ -48,28 +48,71 @@ const Page = () => {
                     ? "File ini berisi fungsi-fungsi utilitas untuk validasi berbagai jenis data, termasuk email, URL, nomor telepon, dan nama pengguna."
                     : "This file contains utility functions for validating various types of data, including email, URL, phone number, and username."}
             </p>
-            <CodeBlock language="typescript" code={codeSyntax} />
+            <CodeBlock content={
+                [
+                    {
+                        code:codeSyntax,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             
             <h2 className="text-3xl">{language ? "Implementasi" : "Implementation"}</h2>
             
             {/* Email Validation */}
             <h3 className="text-xl">{language ? "Validasi Email" : "Email Validation"}</h3>
-            <CodeBlock language="typescript" code={`console.log(isValidEmail("test@example.com"));`} />
+            <CodeBlock content={
+                [
+                    {
+                        code:`
+console.log(isValidEmail("test@example.com"));
+                        `,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             <p>{language ? "Memeriksa apakah alamat email valid." : "Checks if an email address is valid."}</p>
             
             {/* URL Validation */}
             <h3 className="text-xl">{language ? "Validasi URL" : "URL Validation"}</h3>
-            <CodeBlock language="typescript" code={`console.log(isValidURL("https://example.com"));`} />
+            <CodeBlock content={
+                [
+                    {
+                        code:`
+console.log(isValidURL("https://example.com"));
+                        `,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             <p>{language ? "Memeriksa apakah URL valid." : "Checks if a URL is valid."}</p>
             
             {/* Phone Number Validation */}
             <h3 className="text-xl">{language ? "Validasi Nomor Telepon" : "Phone Number Validation"}</h3>
-            <CodeBlock language="typescript" code={`console.log(isValidPhoneNumber("+628123456789"));`} />
+            <CodeBlock content={
+                [
+                    {
+                        code:`
+console.log(isValidPhoneNumber("+628123456789"));
+                        `,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             <p>{language ? "Memeriksa apakah nomor telepon valid." : "Checks if a phone number is valid."}</p>
             
             {/* Username Validation */}
             <h3 className="text-xl">{language ? "Validasi Nama Pengguna" : "Username Validation"}</h3>
-            <CodeBlock language="typescript" code={`console.log(isValidUsername("kadek_yola"));`} />
+            <CodeBlock content={
+                [
+                    {
+                        code:`
+console.log(isValidUsername("kadek_yola"));
+                        `,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             <p>{language ? "Memeriksa apakah nama pengguna valid." : "Checks if a username is valid."}</p>
         </div>
     );

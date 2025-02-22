@@ -35,14 +35,23 @@ const Page = () => {
                 ? "File ini berisi custom hook yang memungkinkan pengguna menyalin teks ke clipboard dengan mudah."
                 : "This file contains a custom hook that allows users to copy text to the clipboard easily."}
             </p>
-            <CodeBlock language="typescript" code={codeSyntax} />
-            
+            <CodeBlock content={
+                [
+                    {
+                        code:codeSyntax,
+                        language:"typescript"
+                    }
+                ]
+            }/>
             {/* Implementation Section */}
             <h2 className="text-3xl">{language ? "Implementasi" : "Implementation"}</h2>
             
             {/* Using useCopy Hook */}
             <h3 className="text-xl">{language ? "Menggunakan useCopy Hook" : "Using useCopy Hook"}</h3>
-            <CodeBlock language="typescript" code={`
+            <CodeBlock content={
+                [
+                    {
+                        code:`
 import useCopy from "@/hooks/useCopy";
 
 const Component = () => {
@@ -55,7 +64,11 @@ const Component = () => {
         </div>
     );
 };
-            `}/>
+                        `,
+                        language:"tsx"
+                    }
+                ]
+            }/>
             <p>{language ? "Hook" : "The hook"} <code>useCopy</code> {language ? "memungkinkan Anda menyalin teks ke clipboard dan memberi tahu pengguna ketika teks berhasil disalin." : "allows you to copy text to the clipboard and notifies the user when the text is successfully copied."}</p>
             <ul className="ml-8 list-disc">
                 <li><code>text</code>: {language ? "Teks yang akan disalin ke clipboard." : "The text to be copied to the clipboard."}</li>
