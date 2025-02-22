@@ -14,6 +14,10 @@ export const SidebarContent: SidebarSection[] = [
         title:"Components",
         path:"/library/components",
         items:[
+            {
+                content:"Code Block",
+                path:"/library/components/code-block"
+            },
         ]
     },
     {
