@@ -14,10 +14,10 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
     return (
         <div className="w-full lg:w-3/4 min-h-dvh flex  relative ">
             <div className={`z-10 px-2 w-3/4 gap-4 flex flex-grow flex-col h-dvh overflow-y-auto bg-primary dark:bg-darkBg fixed lg:sticky lg:w-1/4  top-0 pt-28 transform transition-transform ease-in-out duration-300  ${!isOpen ? "-translate-x-full lg:translate-x-0" : "translate-x-0"} `}>
-            <button className="flex items-center dark:text-white text-lg lg:hidden" onClick={()=>setIsOpen(false)}>
-                <IoIosArrowForward className="rotate-180" /> Menu
-            </button>
-            {SidebarContent.map((section) => (
+                <button className="flex items-center dark:text-white text-lg lg:hidden" onClick={() => setIsOpen(false)}>
+                    <IoIosArrowForward className="rotate-180" /> Menu
+                </button>
+                {SidebarContent.map((section) => (
                     <div key={section.title}>
                         <Link href={section.path} className=" text-base cursor-pointer py-1 dark:text-white">{section.title}</Link>
                         <ul className="w-full text-sm pl-2 text-gray-400  flex flex-col gap-2">
@@ -30,8 +30,8 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
             </div>
             <div className="w-full lg:w-3/4 px-2 ">
                 <div className="w-full h-20"></div>
-                <button className="flex justify-center items-center py-8 dark:text-white text-lg lg:hidden" onClick={()=>setIsOpen(true)}>
-                    <IoIosArrowForward/> Menu
+                <button className="flex justify-center items-center py-8 dark:text-white text-lg lg:hidden" onClick={() => setIsOpen(true)}>
+                    <IoIosArrowForward /> Menu
                 </button>
                 <ul className="w-full flex justify-start items-center dark:text-white py-2">
                     <li key={0} className="flex items-center  hover:text-second">
@@ -59,7 +59,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
                     })}
                 </ul>
                 {children}
-                
+
             </div>
         </div>
     );

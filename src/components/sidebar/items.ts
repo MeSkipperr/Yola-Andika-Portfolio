@@ -21,12 +21,6 @@ export const SidebarContent: SidebarSection[] = [
         ]
     },
     {
-        title:"Functions",
-        path:"/library/functions",
-        items:[
-        ]
-    },
-    {
         title:"Contexts",
         path:"/library/contexts",
         items:[

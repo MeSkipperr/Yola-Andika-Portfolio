@@ -45,23 +45,6 @@ const LibraryPage = () => {
                     }
                 ]
             }/>
-            
-            <h1 className="text-4xl">Functions</h1>
-            <p className="text-base">
-                {language
-                ? "Fungsi yang siap digunakan untuk berbagai kebutuhan pengembangan."
-                : "Pre-built functions ready to be used for various development needs."}
-            </p>
-            <Link href="/library/function">{"Home > Library > Functions"}</Link>
-            <CodeBlock content={
-                [
-                    {
-                        code:"import {} from '@yola-andika/functions'",
-                        language:"javascript"
-                    }
-                ]
-            }/>
-            
             <h1 className="text-4xl">Libraries</h1>
             <p className="text-base">
                 {language
