@@ -1,28 +1,29 @@
 "use client"
 import { useEffect, useRef, useState } from "react";
 
-import { FILTER } from "./config";
+import { FILTER } from "../config";
 
 
-const CameraCapture = ({ 
-    onCapture, 
-    onReset 
-}: { 
+type CameraCaptureProps = {
     onCapture: (image: string, filter: string) => void;
     onReset: () => void;
-}) => {
+    isStart: boolean;
+    setIsStart: (value: boolean) => void;
+    captureCount:number;
+}
+
+const CameraCapture = ({ onCapture, onReset, isStart, setIsStart,captureCount = 1}: CameraCaptureProps) => {
     const [selectedFilter, setSelectedFilter] = useState<string>(FILTER[0].value);
 
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const [captureCount, setCaptureCount] = useState(0);
     const [error, setError] = useState<string | null>(null);
 
     const [devices, setDevices] = useState<MediaDeviceInfo[]>([]);
     const [selectedDevice, setSelectedDevice] = useState<string | null>(null);
     const [currentStream, setCurrentStream] = useState<MediaStream | null>(null);
 
-    const [isStart, setIsStart] = useState<boolean>(false);
+
     const [timer, setTimer] = useState(3);
 
     // **🔍 Mengambil daftar kamera yang tersedia**
@@ -149,19 +150,16 @@ const CameraCapture = ({
             const imageData = canvasRef.current.toDataURL("image/png");
 
             onCapture(imageData, selectedFilter);
-            setCaptureCount((prev) => prev + 1);
         }
     };
 
     const startCapture = () => {
         onReset();
-        setCaptureCount(0)
         setIsStart(true);
-        const lastCount = 4;
     
         const runCountdown = (iteration: number) => {
-            if (iteration > lastCount) {
-                setIsStart(false); // Matikan tampilan countdown setelah semua selesai
+            if (iteration > captureCount) {
+                setIsStart(false); 
                 return;
             }
     
@@ -172,10 +170,9 @@ const CameraCapture = ({
                     clearInterval(interval);
                     capturePhoto()
     
-                    // Delay sebelum iterasi berikutnya dimulai
                     setTimeout(() => {
                         runCountdown(iteration + 1);
-                    }, 1000);
+                    }, 50);
                 }
                 count--;
             }, 1000);
@@ -189,12 +186,12 @@ const CameraCapture = ({
         <>  
             {!isStart
             &&
-            <div className="w-full flex p-2 items-center gap-2 gap-2`">
+            <div className="w-full flex p-2 items-center gap-2 ">
                 <span className="text-persianPink  text-lg whitespace-nowrap">Camera Input :</span>
                 <select
                     value={selectedDevice || ""}
                     onChange={(e) => setSelectedDevice(e.target.value)}
-                    className="rounded cursor-pointer outline-0   "
+                    className="rounded cursor-pointer outline-0 w-full  "
                 >
                         {devices.map((device) => (
                         <option key={device.deviceId} value={device.deviceId}>
@@ -204,14 +201,14 @@ const CameraCapture = ({
                 </select>
             </div>
             }
-            <div className="w-full aspect-[4/3] object-cover rounded-md bg-amber-50 text-red-500 relative px-2">
+            <div className="w-full aspect-[4/3] object-cover rounded-md  text-red-500 relative px-2">
             {error
                 ? error
                 : 
                 <>
                     {isStart &&
                     <div
-                        className={`absolute inset-0 text-white flex justify-center items-center font-bold text-9xl transition-all duration-200 ${
+                        className={`absolute z-20 inset-0 text-white flex justify-center items-center font-bold text-9xl transition-all duration-200 ${
                             timer === 0 ? "bg-white opacity-80" : "opacity-100"
                         }`}
                         >
@@ -224,27 +221,30 @@ const CameraCapture = ({
             </div>
             {!isStart
             &&
-            <>
-                <span className="text-white p-2 text-lg">Filter :</span>    
-                <select
-                    value={selectedFilter}
-                    onChange={(e) => setSelectedFilter(e.target.value)}
-                    className=" p-2 rounded w-full cursor-pointer text-white outline-0 bg-pastelPink"
-                >
-                    {FILTER.map((filter) => (
-                        <option key={filter.value} value={filter.value}
-                            className="py-2 hover:bg-persianPink cursor-pointer"
-                        >
-                            {filter.title}
-                        </option>
-                    ))}
-                </select>
+            <div className="p-2 bg-white">
+                <div className="w-full flex items-center gap-2 ">
+                    <span className="text-persianPink text-lg text-nowrap">Filter :</span>    
+                    <select
+                        value={selectedFilter}
+                        onChange={(e) => setSelectedFilter(e.target.value)}
+                        className=" p-2 rounded w-full cursor-pointer text-persianPink outline-0 bg-pastelPink"
+                    >
+                        {FILTER.map((filter) => (
+                            <option key={filter.value} value={filter.value}
+                                className="py-2 cursor-pointer"
+                            >
+                                {filter.title}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 <button 
                 onClick={startCapture}
-                className="bg-green-400 rounded-md mt-4  py-1 w-full  font-semibold tracking-wide text-lg text-white cursor-pointer">Start</button>
-            </>
+                className="bg-green-400 rounded-md mt-4  py-1 w-full  font-semibold tracking-wide text-lg text-white cursor-pointer">
+                Start</button>
+            </div>
             }
-        <canvas ref={canvasRef} className="hidden" />
+            <canvas ref={canvasRef} className="hidden" />
         </>
     );
 }

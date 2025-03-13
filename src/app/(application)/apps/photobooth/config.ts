@@ -1,6 +1,6 @@
 type FilterType = {
     title: string;
-    value: string
+    value: string;
 }
 export const FILTER: FilterType[] = [
     {
@@ -41,29 +41,87 @@ export const FILTER: FilterType[] = [
     },
 ];
 
-type LayoutType = {
+export type LayoutType = {
     content : number,
-    layout : string;
+    layout : {
+        parent:string;
+        child:string;
+    }
 }
 export const LAYOUT : LayoutType[] = [
     {
+        content:1,
+        layout:{
+            parent:"grid ",
+            child:""
+        },
+    },
+    {
+        content:2,
+        layout:{
+            parent:"grid grid-cols-2",
+            child:""
+        },
+    },
+    {
         content:4,
-        layout:"grid grid-cols-2"
-    }
+        layout:{
+            parent:"grid grid-cols-2",
+            child:""
+        },
+    },
+    {
+        content:6,
+        layout:{
+            parent:"grid grid-cols-2",
+            child:""
+        },
+    },
+    {
+        content:8,
+        layout:{
+            parent:"grid  grid-cols-2",
+            child:""
+        },
+    },
+    {
+        content:3,
+        layout:{
+            parent:"grid grid-cols-2 grid-rows-2 ",
+            child:"col-span-2"
+        },
+    },
+    {
+        content:3,
+        layout:{
+            parent:" grid grid-cols-1",
+            child:""
+        },
+    },
+    {
+        content:4,
+        layout:{
+            parent:" grid grid-cols-1",
+            child:""
+        },
+    },
 ]
 
-type BorderColor = {
-        name:string;
-        hexCode:string;
-    }
+export const BORDER_COLOR : string[] = [
+    "#ffffff",
+    "#B7B1F2",
+    "#FDB7EA",
+    "#FFDCCC",
+    "#f991cc",
+    "#ffdafc",
+]
 
-export const BORDER_COLOR : BorderColor[] = [
-    {
-        name:"White",
-        hexCode:"#ffffff"
-    },
-    {
-        name:"White",
-        hexCode:"#ffffff"
-    },
+export const TEXT_COLOR : string[] = [
+    "#000",
+    "#ffffff",
+    "#B7B1F2",
+    "#FDB7EA",
+    "#FFDCCC",
+    "#f991cc",
+    "#ffdafc",
 ]
