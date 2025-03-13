@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import StartCapture from "./StartCapture";
 import { LAYOUT } from "../config";
 import PhotoSetting from "./PhotoSetting";
@@ -45,4 +45,12 @@ const PhotoBooth = () => {
 
 }
 
-export default PhotoBooth;
+const PhotoBoothStart = () => {
+    return (
+        <Suspense fallback={<p>Loading...</p>}>
+            <PhotoBooth />
+        </Suspense>
+    );
+};
+
+export default PhotoBoothStart;
