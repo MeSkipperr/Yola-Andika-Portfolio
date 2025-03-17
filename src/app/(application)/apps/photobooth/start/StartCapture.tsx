@@ -1,7 +1,8 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FILTER, LayoutType } from "../config";
 import Image from "next/image";
+import Link from "next/link";
 
 
 type StartCaptureProps = {
@@ -183,8 +184,25 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
         runCountdown(1);
     };
 
+    const renderedContent = useMemo(() => {
+        return Array.from({ length: layout.content }, (_, index) => (
+            <div key={`content-${index}`} className={`w-full aspect-[4/3] bg-lavenderPink ${index === 0 && layout.layout.child}`}>
+                {capturedImages?.[index]?.image && (
+                    <Image
+                        src={capturedImages[index].image}
+                        width={1000}
+                        height={1000}
+                        alt={`Image Content : ${index}`}
+                        className={`w-full aspect-[4/3] h-auto ${capturedImages[index].filter || ''}`}
+                        loading="lazy"
+                    />
+                )}
+            </div>
+        ));
+    }, [layout, capturedImages]);
+
     return (
-        <div className="w-full lg:w-3/4 h-3/4  flex flex-col lg:flex-row justify-between items-center gap-4">
+        <div className="w-full lg:w-3/4 h-3/4  flex flex-col lg:flex-row gap-4">
             <div className="w-full lg:w-1/2 flex flex-col justify-around items-start h-full bg-white rounded-md shadow-[0_3px_10px_#ffffff]">
                 {!isStart
                     &&
@@ -240,37 +258,28 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
                             </select>
                         </div>
                         {!isStart && <button className="py-2 px-4 rounded-md text-white text-lg bg-green-400 " onClick={startCapture}>Start</button>}
+                        
+                    </div>
+                    
+                }
+                {capturedImages.length === layout.content  &&
+                    <div className="flex justify-between items-center w-full gap-2 p-2">
+                            <button className="py-2 px-4 rounded-md text-white text-lg bg-red-500" onClick={onReset}>Delete</button>
+                            <button className="py-2 px-4 rounded-md text-white text-lg bg-persianPink" onClick={()=>setIsConfigurationPage(true)} >Next</button>
                     </div>
                 }
                 <canvas ref={canvasRef} className="hidden" />
             </div>
             <div className="w-full h-auto border border-persianPink rounded-full lg:w-auto lg:h-full"></div>
-            <div className="w-full lg:w-1/2  flex flex-col h-full justify-center items-center bg-white rounded-md shadow-[0_3px_10px_#ffffff] p-4 gap-2">
-                <div className="w-full  h-full rounded-md overflow-y-auto border flex justify-center items-start">
-                    {layout && (
+            <div className="w-full lg:w-1/2  flex flex-col justify-center items-center bg-white rounded-md shadow-[0_3px_10px_#ffffff] p-4 gap-2">
+                <Link href="/apps/photobooth" className="w-full underline ">Change Layout</Link>
+                <div className="w-full rounded-md overflow-y-auto border flex justify-center items-start">
+                    {layout && 
                         <div className={`w-full ${layout.layout.parent} gap-2 pb-8`}>
-                            {Array.from({ length: layout.content }, (_, index) => (
-                                <div key={`content-${index}`} className={`w-full aspect-[4/3] bg-lavenderPink  ${index === 0 && layout.layout.child} `}>
-                                    {capturedImages?.[index]?.image && (
-                                        <Image
-                                            src={capturedImages[index].image}
-                                            width={1000}
-                                            height={1000}
-                                            alt={`Image Content : ${index}`}
-                                            className={`w-full aspect-[4/3] h-auto ${capturedImages[index].filter || ''}`}
-                                        />
-                                    )}
-                                </div>
-                            ))}
+                        {renderedContent}
                         </div>
-                    )}                    
+                    }
                 </div>
-                {capturedImages.length === layout.content &&
-                    <div className="flex justify-between items-center w-full gap-2">
-                            <button className="py-2 px-4 rounded-md text-white text-lg bg-red-500" onClick={onReset}>Delete</button>
-                            <button className="py-2 px-4 rounded-md text-white text-lg bg-persianPink" onClick={()=>setIsConfigurationPage(true)} >Next</button>
-                    </div>
-                }
             </div>
         </div>
     );

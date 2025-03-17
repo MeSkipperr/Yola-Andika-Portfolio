@@ -21,7 +21,7 @@ const ColorPicker = ({ setColorOutline }: { setColorOutline: (color: string) => 
     return (
         <li
             key="Custom Color"
-            className="relative h-full aspect-square rounded-full border cursor-pointer flex items-center justify-center"
+            className="relative h-10 aspect-square rounded-full border cursor-pointer flex items-center justify-center"
             style={{ backgroundColor: color }}
             onClick={handleClick} 
         >

@@ -13,8 +13,8 @@ const PhotoBooth = () => {
         {isLayoutPage
         ? <LayoutSelect setIsLayoutPage={setIsLayoutPage} />
         :
-        <div className="w-full lg:w-3/4 lg:h-3/4 bg-white rounded-sm p-4 text-persianPink">
-            <h1 className="text-4xl lg:text-8xl fontKaftan font-semibold tracking-wide">Photobooth Digital</h1>
+        <div className="w-full lg:w-3/4 lg:h-3/4 bg-white rounded-sm p-4 ">
+            <h1 className="text-4xl lg:text-8xl fontKaftan font-semibold tracking-wide text-[#7E074A]">Photobooth Digital</h1>
             <p className="text-xl lg:text-2xl">Capture Your Perfect Moments</p>
             <p className="lg:text-xl">By I Kadek Yola Andika</p>
             <hr className="border-persianPink mt-4 mb-14 "/>
@@ -61,7 +61,7 @@ const LayoutSelect = ({setIsLayoutPage}:{setIsLayoutPage:(value:boolean)=>void})
     const [selectLayout, setSelectLayout] = useState<number>(0);
 
     return ( 
-        <div className="w-full lg:w-3/4  bg-white rounded-sm p-4 text-persianPink">
+        <div className="w-full lg:w-3/4  bg-white rounded-sm p-4 text-[#7E074A]">
             <h1 className="text-4xl lg:text-8xl fontKaftan font-semibold tracking-wide">Select Layout</h1>
             <hr className="border-persianPink mt-4 mb-14 "/>
             <ul className="w-full h-full grid grid-cols-3 lg:grid-cols-6 gap-2 ">

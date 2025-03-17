@@ -85,12 +85,12 @@ export const LAYOUT : LayoutType[] = [
         },
     },
     {
-        content:3,
-        layout:{
-            parent:"grid grid-cols-2 grid-rows-2 ",
-            child:"col-span-2"
-        },
-    },
+        content: 3,
+        layout: {
+            parent: "grid grid-cols-2 grid-auto-rows",
+            child: "col-span-2"
+        }
+    },    
     {
         content:3,
         layout:{

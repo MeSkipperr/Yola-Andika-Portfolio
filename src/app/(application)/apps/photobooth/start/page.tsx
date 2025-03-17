@@ -34,7 +34,7 @@ const PhotoBooth = () => {
         setCapturedImages([]);
     };
     return ( 
-        <div className="w-full min-h-dvh lg:h-dvh flex justify-center items-center px-4 py-36 lg:py-0" style={{ backgroundImage: "url('/background/blurry-white-pink.svg')", backgroundSize: "cover", backgroundPosition: "center" }}>
+        <div className="w-full min-h-dvh flex justify-center  px-4 py-36 bg-persianPink" >
             {isConfigurationPage
             ? <PhotoSetting  layout={layout} capturedImages={capturedImages} setIsConfigurationPage={setIsConfigurationPage}/>
             :
