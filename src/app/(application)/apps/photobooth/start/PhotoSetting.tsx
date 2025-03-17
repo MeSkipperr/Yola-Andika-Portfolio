@@ -143,13 +143,13 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
 
 
     return (
-        <div className="w-full lg:w-3/4 flex flex-col lg:flex-row    gap-2 lg:p-8 relative">
+        <div className="w-full  lg:w-3/4 flex flex-col lg:flex-row    gap-2 lg:p-8 relative">
             {processing &&
                 <div className="absolute inset-0 flex justify-center items-center">
                     <SyncLoader color="#fff" size={30} />
                 </div>
             }
-            <div className="w-full lg:w-[35%] h-fit  flex flex-col justify-between  text-[#7E074A]  tracking-wide bg-white py-4 px-4 rounded-md">
+            <div className="w-full lg:w-[35%] sm:w-1/2  h-fit  flex flex-col justify-between  text-[#7E074A]  tracking-wide bg-white py-4 px-4 rounded-md">
                 <div className="w-full flex flex-col gap-2 ">
                     <span onClick={() => setIsConfigurationPage(false)} className="underline cursor-pointer">Back</span>
                     <h1 className="text-5xl">
@@ -183,19 +183,20 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
                         ))}
                     </ul>
                 </div>
-                <div className="w-full flex justify-between pt-4 gap-2">
-                    <a href="https://www.instagram.com/kdk.yolaandika/" target="_blank" rel="noopener noreferrer" >
-                        <button className="py-2 px-4 rounded-md text-persianPink font-semibold text-sm bg-lavenderPink" >Follow Instagram</button>
-                    </a>
-                    <div className="flex gap-2">
+                <div className="w-full flex flex-col justify-between pt-4 gap-2">
+
                         <button className="py-2 px-4 rounded-md text-white text-sm bg-green-400 font-semibold" onTouchStart={() => {}} onClick={() => handleShareImage()}>Share</button>
                         <button className="py-2 px-4 rounded-md text-white text-sm bg-green-400 font-semibold" onClick={handleGenerateAndDownload}>Download</button>
-                    </div>
+                    {/* <div className="flex gap-2">
+                    </div> */}
                 </div>
                 <div className="flex flex-col mt-2 gap-2">
                     <h3>Email</h3>
                     <input type="text" className="h-10 w-full border rounded-md outline-none px-2 placeholder:text-persianPink" placeholder="jhon@example.com" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
                     <button className="py-2 w-full rounded-md text-white text-sm bg-green-400 font-semibold" disabled={sendEmailIsLoading} onClick={() => handleSendEmail(userEmail)}>{sendEmailIsLoading?"Loading...":"Send To Email"}</button>
+                    <a href="https://www.instagram.com/kdk.yolaandika/" target="_blank" rel="noopener noreferrer" >
+                        <button className="py-2 px-4 rounded-md text-persianPink font-semibold text-sm bg-lavenderPink" >Follow Instagram</button>
+                    </a>
                 </div>
             </div>
             <div className="w-full h-auto lg:px-2   flex justify-center " >

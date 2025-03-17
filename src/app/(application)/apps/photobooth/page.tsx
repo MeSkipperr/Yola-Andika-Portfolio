@@ -15,7 +15,7 @@ const PhotoBooth = () => {
         :
         <div className="w-full lg:w-3/4 lg:h-3/4 bg-white rounded-sm p-4 ">
             <h1 className="text-4xl lg:text-8xl fontKaftan font-semibold tracking-wide text-[#7E074A]">Photobooth Digital</h1>
-            <p className="text-xl lg:text-2xl">Capture Your Perfect Moments</p>
+            <p className="text-xl lg:text-2xl mt-10">Capture Your Perfect Moments</p>
             <p className="lg:text-xl">By I Kadek Yola Andika</p>
             <hr className="border-persianPink mt-4 mb-14 "/>
             <div className="w-full lg:px-8 ">
