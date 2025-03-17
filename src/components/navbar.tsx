@@ -86,9 +86,9 @@ const Navbar = () => {
             <div className="content gap-8 px-8 hidden lg:flex items-center">
                 <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/`}>{language ? 'BERANDA' : 'HOME'}</a>
                 <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/#about`}>{language ? 'TENTANG ' : 'ABOUT'}</a>
-                <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/#service`}>{language ? 'LAYANAN' : 'SERVICE'}</a>
-                <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/apps`}>{language ? 'APP' : 'APPS'}</a>
                 <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/connection`}>{language ? 'KONEKSI' : 'CONNECTION'}</a>
+                <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/apps`}>{language ? 'APP' : 'APPS'}</a>
+                <a className='text-lg cursor-pointer hover:text-second dark:hover:text-second dark:text-primary ' href={`/library`}>{language ? 'PUSTAKA' : 'LIBS'}</a>
 
                 <label className="language-label cursor-pointer text-lg  font-semibold dark:text-primary">
                     <input type="radio" name="bahasa" value="indonesia"  checked={language} className="hidden" onChange={()=>setLanguage(true)} />
@@ -118,8 +118,9 @@ const Navbar = () => {
                             w-full backdrop-filter backdrop-blur-5 flex items-center flex-col gap-4 text-center `}>
                         <a className='text-lg   cursor-pointer hover:text-second dark:text-primary dark:hover:text-second' href={'/'}>{language ? 'BERANDA' : 'HOME'}</a>
                         <a className='text-lg   cursor-pointer hover:text-second dark:text-primary dark:hover:text-second' href={`/#about`}>{language ? 'TENTANG ' : 'ABOUT'}</a>
-                        <a className='text-lg   cursor-pointer hover:text-second dark:text-primary dark:hover:text-second' href={`/#service`}>{language ? 'LAYANAN' : 'SERVICE'}</a>
                         <a className='text-lg   cursor-pointer hover:text-second dark:text-primary dark:hover:text-second' href={`/connection`}>{language ? 'KONEKSI' : 'CONNECTION'}</a>
+                        <a className='text-lg   cursor-pointer hover:text-second dark:text-primary dark:hover:text-second' href={`/apps`}>{language ? 'APP' : 'APPS'}</a>
+                        <a className='text-lg   cursor-pointer hover:text-second dark:text-primary dark:hover:text-second' href={`/library`}>{language ? 'PUSTAKA' : 'LIBS'}</a>
 
                         <div className="flex justify-center">
                             <label className="language-label cursor-pointer text-lg  font-semibold dark:text-primary">
