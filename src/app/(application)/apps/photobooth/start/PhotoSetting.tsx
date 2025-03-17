@@ -26,6 +26,7 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
     const [images, setImages] = useState(capturedImages);
     const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
     const [userEmail, setUserEmail] = useState<string>("");
+    const [sendEmailIsLoading, setSendEmailIsLoading] = useState<boolean>(false);
 
     const handleDragStart = (index: number) => {
         setDraggedIndex(index);
@@ -42,10 +43,11 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
         setDraggedIndex(null);
     };
 
-    const hasSentEmail = useRef(true); // 🔽 Menyimpan status apakah email sudah dikirim
+    const hasSentEmail = useRef(false); // 🔽 Menyimpan status apakah email sudah dikirim
 
     const handleSendEmail = async (userEmail?: string) => {
         if (!divRef.current ||  isValidEmail(userEmail||"")) return;
+        setSendEmailIsLoading(true)
     
         try {
             const canvas = await html2canvas(divRef.current);
@@ -75,6 +77,8 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
     
         } catch (error) {
             console.error("Error sending image:", error);
+        }finally{
+            setSendEmailIsLoading(false)
         }
     };
 
@@ -191,7 +195,7 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
                 <div className="flex flex-col mt-2 gap-2">
                     <h3>Email</h3>
                     <input type="text" className="h-10 w-full border rounded-md outline-none px-2 placeholder:text-persianPink" placeholder="jhon@example.com" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
-                    <button className="py-2 w-full rounded-md text-white text-sm bg-green-400 font-semibold" onClick={() => handleSendEmail(userEmail)}>Send To Email</button>
+                    <button className="py-2 w-full rounded-md text-white text-sm bg-green-400 font-semibold" disabled={sendEmailIsLoading} onClick={() => handleSendEmail(userEmail)}>{sendEmailIsLoading?"Loading...":"Send To Email"}</button>
                 </div>
             </div>
             <div className="w-full h-auto lg:px-2   flex justify-center " >
