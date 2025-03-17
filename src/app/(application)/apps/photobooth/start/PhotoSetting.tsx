@@ -47,7 +47,9 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
 
     const handleSendEmail = async (userEmail?: string) => {
         if (!divRef.current ||  isValidEmail(userEmail||"")) return;
-        setSendEmailIsLoading(true)
+        if(userEmail || userEmail?.trim()=== ""){
+            setSendEmailIsLoading(true)
+        }
     
         try {
             const canvas = await html2canvas(divRef.current);
@@ -111,7 +113,7 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
 
     const handleShareImage = async () => {
         if (!divRef.current) return;
-    
+        
         setProcessing(true); // 🚀 Mulai proses
         try {
             const canvas = await html2canvas(divRef.current);
