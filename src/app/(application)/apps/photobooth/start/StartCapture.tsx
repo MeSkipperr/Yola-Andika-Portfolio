@@ -234,7 +234,7 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
                                     {timer}
                                 </div>
                             }
-                            <video ref={videoRef} autoPlay playsInline className="w-full aspect-[4/3] object-cover rounded-md bg-peachPuff" style={{ filter: selectedFilter }} />
+                            <video ref={videoRef} autoPlay playsInline className="w-full aspect-[4/3] object-cover rounded-md bg-peachPuff scale-x-[-1]" style={{ filter: selectedFilter }} />
                         </>
                     }
                 </div>

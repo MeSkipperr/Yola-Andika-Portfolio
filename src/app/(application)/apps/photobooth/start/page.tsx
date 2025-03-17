@@ -28,7 +28,6 @@ const PhotoBooth = () => {
 
     const handleCapture = (image: string, filter: string) => {
         setCapturedImages((prev) => [...prev, { image, filter }]);
-        console.log(capturedImages)
     };
     const handleReset = () => {
         setCapturedImages([]);

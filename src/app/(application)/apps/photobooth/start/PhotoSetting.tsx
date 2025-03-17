@@ -7,6 +7,7 @@ import ColorPicker from "./ColorPicker";
 import Image from "next/image";
 import html2canvas from "html2canvas";
 import axios from "axios";
+import { isValidEmail } from "@/utils/validator";
 
 
 type PhotoSettingProps = {
@@ -24,6 +25,7 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
     const [processing, setProcessing] = useState(false);
     const [images, setImages] = useState(capturedImages);
     const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+    const [userEmail, setUserEmail] = useState<string>("");
 
     const handleDragStart = (index: number) => {
         setDraggedIndex(index);
@@ -40,45 +42,45 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
         setDraggedIndex(null);
     };
 
-    const hasSentEmail = useRef(false); // 🔽 Menyimpan status apakah email sudah dikirim
+    const hasSentEmail = useRef(true); // 🔽 Menyimpan status apakah email sudah dikirim
+
+    const handleSendEmail = async (userEmail?: string) => {
+        if (!divRef.current ||  isValidEmail(userEmail||"")) return;
+    
+        try {
+            const canvas = await html2canvas(divRef.current);
+    
+            // 🔽 Konversi ke Blob
+            const blob = await new Promise<Blob | null>((resolve) =>
+                canvas.toBlob(resolve, "image/png")
+            );
+    
+            if (!blob) {
+                throw new Error("Failed to generate image");
+            }
+    
+            const file = new File([blob], "photobooth.png", { type: "image/png" });
+    
+            // 🔽 Buat FormData
+            const formData = new FormData();
+            formData.append("file", file);
+            if (userEmail) formData.append("email", userEmail); // Tambahkan email jika ada
+    
+            // 🔽 Kirim ke API
+            await axios.post("/api/apps/photobooth", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+    
+        } catch (error) {
+            console.error("Error sending image:", error);
+        }
+    };
 
     useEffect(() => {
         if (hasSentEmail.current) return; // 🔽 Cegah pemanggilan ulang
         hasSentEmail.current = true; // ✅ Tandai sebagai sudah dikirim
-    
-        const handleSendEmail = async () => {
-            if (!divRef.current) return;
-    
-            try {
-                const canvas = await html2canvas(divRef.current);
-    
-                // 🔽 Konversi ke Blob
-                const blob = await new Promise<Blob | null>((resolve) =>
-                    canvas.toBlob(resolve, "image/png")
-                );
-    
-                if (!blob) {
-                    throw new Error("Failed to generate image");
-                }
-    
-                const file = new File([blob], "photobooth.png", { type: "image/png" });
-    
-                // 🔽 Buat FormData
-                const formData = new FormData();
-                formData.append("file", file);
-    
-                // 🔽 Kirim ke API
-                await axios.post("/api/apps/photobooth", formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                });
-    
-            } catch (error) {
-                console.error("Error sending image:", error);
-                alert("❌ Terjadi kesalahan saat mengirim email.");
-            }
-        };
     
         handleSendEmail();
     }, []); // 🔽 Dependency array kosong → hanya dijalankan sekali
@@ -177,7 +179,7 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
                         ))}
                     </ul>
                 </div>
-                <div className="w-full flex justify-between pt-4">
+                <div className="w-full flex justify-between pt-4 gap-2">
                     <a href="https://www.instagram.com/kdk.yolaandika/" target="_blank" rel="noopener noreferrer" >
                         <button className="py-2 px-4 rounded-md text-persianPink font-semibold text-sm bg-lavenderPink" >Follow Instagram</button>
                     </a>
@@ -185,6 +187,11 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
                         <button className="py-2 px-4 rounded-md text-white text-sm bg-green-400 font-semibold" onTouchStart={() => {}} onClick={() => handleShareImage()}>Share</button>
                         <button className="py-2 px-4 rounded-md text-white text-sm bg-green-400 font-semibold" onClick={handleGenerateAndDownload}>Download</button>
                     </div>
+                </div>
+                <div className="flex flex-col mt-2 gap-2">
+                    <h3>Email</h3>
+                    <input type="text" className="h-10 w-full border rounded-md outline-none px-2 placeholder:text-persianPink" placeholder="jhon@example.com" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
+                    <button className="py-2 w-full rounded-md text-white text-sm bg-green-400 font-semibold" onClick={() => handleSendEmail(userEmail)}>Send To Email</button>
                 </div>
             </div>
             <div className="w-full h-auto lg:px-2   flex justify-center " >
