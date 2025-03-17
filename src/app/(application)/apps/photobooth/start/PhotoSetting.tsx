@@ -46,7 +46,10 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
     const hasSentEmail = useRef(false); // 🔽 Menyimpan status apakah email sudah dikirim
 
     const handleSendEmail = async (userEmail?: string) => {
+        console.log("sendEmailIsLoading sebelum klik:", sendEmailIsLoading);
+        
         if (!divRef.current ||  isValidEmail(userEmail||"")) return;
+        console.log("sendEmailIsLoading sebelum setelah:", sendEmailIsLoading);
         if(userEmail || userEmail?.trim()=== ""){
             setSendEmailIsLoading(true)
         }
