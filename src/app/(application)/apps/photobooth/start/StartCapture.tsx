@@ -139,22 +139,30 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
     }, [selectedDevice]);
 
     const capturePhoto = () => {
-
         if (!videoRef.current || !canvasRef.current) return;
-
+    
         const context = canvasRef.current.getContext("2d");
         if (context) {
-            canvasRef.current.width = videoRef.current.videoWidth;
-            canvasRef.current.height = videoRef.current.videoHeight;
-
+            const video = videoRef.current;
+            const canvas = canvasRef.current;
+    
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+    
+            context.save(); // Simpan state canvas sebelum transformasi
+            context.translate(canvas.width, 0); // Geser ke kanan
+            context.scale(-1, 1); // Flip horizontal (Mirror)
+            
             context.filter = selectedFilter;
-            context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
-
-            const imageData = canvasRef.current.toDataURL("image/png");
-
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+            context.restore(); // Kembalikan transformasi agar tidak mempengaruhi gambar lain
+    
+            const imageData = canvas.toDataURL("image/png");
             onCapture(imageData, selectedFilter);
         }
     };
+    
 
     const startCapture = () => {
         onReset();
