@@ -182,7 +182,7 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
                         <button className="py-2 px-4 rounded-md text-persianPink font-semibold text-sm bg-lavenderPink" >Follow Instagram</button>
                     </a>
                     <div className="flex gap-2">
-                        <button className="py-2 px-4 rounded-md text-white text-sm bg-green-400 font-semibold" onClick={handleShareImage}>Share</button>
+                        <button className="py-2 px-4 rounded-md text-white text-sm bg-green-400 font-semibold" onTouchStart={() => {}} onClick={() => handleShareImage()}>Share</button>
                         <button className="py-2 px-4 rounded-md text-white text-sm bg-green-400 font-semibold" onClick={handleGenerateAndDownload}>Download</button>
                     </div>
                 </div>
