@@ -153,7 +153,8 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
             context.translate(canvas.width, 0); // Geser ke kanan
             context.scale(-1, 1); // Flip horizontal (Mirror)
     
-            context.filter = selectedFilter; // Terapkan filter di sini
+            // ✅ Terapkan filter langsung ke context sebelum menggambar
+            context.filter = selectedFilter || "none"; 
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
     
             context.restore(); // Kembalikan transformasi agar tidak mempengaruhi gambar lain
@@ -162,6 +163,7 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
             onCapture(imageData, selectedFilter);
         }
     };
+    
     
     
 

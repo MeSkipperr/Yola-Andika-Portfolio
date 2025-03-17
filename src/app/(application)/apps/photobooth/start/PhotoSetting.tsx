@@ -7,7 +7,6 @@ import ColorPicker from "./ColorPicker";
 import Image from "next/image";
 import html2canvas from "html2canvas";
 import axios from "axios";
-import { isValidEmail } from "@/utils/validator";
 
 
 type PhotoSettingProps = {
@@ -46,10 +45,6 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
     const hasSentEmail = useRef(false); // 🔽 Menyimpan status apakah email sudah dikirim
 
     const handleSendEmail = async (userEmail?: string) => {
-        console.log("sendEmailIsLoading sebelum klik:", sendEmailIsLoading);
-        
-        if (isValidEmail(userEmail||"")) return;
-        console.log("sendEmailIsLoading sebelum setelah:", sendEmailIsLoading);
         if(userEmail || userEmail?.trim()=== ""){
             setSendEmailIsLoading(true)
         }
