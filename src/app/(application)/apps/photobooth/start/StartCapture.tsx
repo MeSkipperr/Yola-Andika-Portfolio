@@ -141,7 +141,7 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
     const capturePhoto = () => {
         if (!videoRef.current || !canvasRef.current) return;
     
-        const context = canvasRef.current.getContext("2d");
+        const context = canvasRef.current.getContext("2d", { willReadFrequently: true });
         if (context) {
             const video = videoRef.current;
             const canvas = canvasRef.current;
@@ -149,11 +149,11 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
     
-            context.save(); // Simpan state canvas sebelum transformasi
+            context.save(); // Simpan state sebelum transformasi
             context.translate(canvas.width, 0); // Geser ke kanan
             context.scale(-1, 1); // Flip horizontal (Mirror)
-            
-            context.filter = selectedFilter;
+    
+            context.filter = selectedFilter; // Terapkan filter di sini
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
     
             context.restore(); // Kembalikan transformasi agar tidak mempengaruhi gambar lain
@@ -162,6 +162,7 @@ const StartCapture = ({ onCapture, onReset, layout,capturedImages ,setIsConfigur
             onCapture(imageData, selectedFilter);
         }
     };
+    
     
 
     const startCapture = () => {

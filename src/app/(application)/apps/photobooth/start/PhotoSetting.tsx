@@ -48,14 +48,14 @@ const PhotoSetting = ({ capturedImages, layout, setIsConfigurationPage }: PhotoS
     const handleSendEmail = async (userEmail?: string) => {
         console.log("sendEmailIsLoading sebelum klik:", sendEmailIsLoading);
         
-        if (!divRef.current ||  isValidEmail(userEmail||"")) return;
+        if (isValidEmail(userEmail||"")) return;
         console.log("sendEmailIsLoading sebelum setelah:", sendEmailIsLoading);
         if(userEmail || userEmail?.trim()=== ""){
             setSendEmailIsLoading(true)
         }
     
         try {
-            const canvas = await html2canvas(divRef.current);
+            const canvas = await html2canvas(divRef.current as HTMLDivElement);
     
             // 🔽 Konversi ke Blob
             const blob = await new Promise<Blob | null>((resolve) =>
