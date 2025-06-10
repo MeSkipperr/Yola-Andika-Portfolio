@@ -3,6 +3,7 @@
 import { useLanguage } from "@/context/Language";
 import { useState } from "react";
 import axios from 'axios';
+import { contactConfig } from "@/config/contact";
 
 const Contact = () => {
     const {language}= useLanguage();
@@ -147,9 +148,9 @@ ${userName}
         <div className="my-8 w-full">
             <p className='text-[#A2A9B4] sm:text-3xl'>{language ? 'Sosial' : "Social"}</p>
             <div className="flex gap-4">
-                <a className='dark:text-white hover:text-third dark:hover:text-third hover:underline sm:text-2xl' target='blank' href="https://www.instagram.com/kdk.yolaandika">Instagram</a>
-                <a className='dark:text-white hover:text-third dark:hover:text-third hover:underline sm:text-2xl' target='blank' href="mailto:ikadekyolaandika02@gmail.com">Email</a>
-                <a className='dark:text-white hover:text-third dark:hover:text-third hover:underline sm:text-2xl' target='blank' href="https://github.com/MeSkipperr">GitHub</a>
+                <a className='dark:text-white hover:text-third dark:hover:text-third hover:underline sm:text-2xl' target='blank' href={contactConfig.instagram.url}>Instagram</a>
+                <a className='dark:text-white hover:text-third dark:hover:text-third hover:underline sm:text-2xl' target='blank' href={`mailto:${contactConfig.email}`}>Email</a>
+                <a className='dark:text-white hover:text-third dark:hover:text-third hover:underline sm:text-2xl' target='blank' href={contactConfig.github.url}>GitHub</a>
             </div>
         </div>
     </div>

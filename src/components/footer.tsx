@@ -1,4 +1,5 @@
 "use client"
+import { contactConfig } from "@/config/contact";
 import { useDarkMode } from "@/context/DarkModeContext";
 import { useLanguage } from "@/context/Language";
 import Image from "next/image";
@@ -50,9 +51,9 @@ const Footer = ({
                         </div>
                         <div className="flex flex-col lg:px-12">
                             <p className="text-lg sm:text-3xl" style={{ color: textColor }}>Sosial</p>
-                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} target="_blank" href="mailto:ikadekyolaandika02@gmail.com">Email</Link>
-                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} target="_blank" href="https://github.com/MeSkipperr">Github</Link>
-                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} target="_blank" href="https://www.instagram.com/kdk.yolaandika">Instagram</Link>
+                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} target="_blank" href={`mailto:${contactConfig.email}`}>Email</Link>
+                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} target="_blank" href={contactConfig.github.url}>Github</Link>
+                            <Link className="pl-1 text-sm sm:text-xl" style={{ color: textColor }} target="_blank" href={contactConfig.instagram.url}>Instagram</Link>
                         </div>
                     </div>
                     <hr className="border-t-1 sm:border-t-2 my-4" style={{ borderColor: textColor }} />

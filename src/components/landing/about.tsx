@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { useLanguage } from '@/context/Language';
+import {contactConfig} from '@/config/contact'
 import Image from 'next/image';
 
 const About = () => {
@@ -45,13 +46,13 @@ const About = () => {
                 <div className=" bg-third text-base lg:text-xl text-white absolute px-4 py-2 rounded-lg lg:left-12 lg:top-14 top-8 left-2">01 September 2007 </div>
                 <div className=" bg-third text-base lg:text-xl text-white absolute px-4 py-2 rounded-lg lg:bottom-12 lg:right-8 bottom-4 right-2">Bali, Indonesia </div>
                 <div className="flex-col flex gap-4 m-4 absolute bottom-0  items-center" >
-                    <a href="https://github.com/MeSkipperr" target="_blank" rel="noopener noreferrer" >
+                    <a href={contactConfig.github.url} target="_blank" rel="noopener noreferrer" >
                         <FontAwesomeIcon icon={faGithub} className='dark:text-white text-black hover:text-third dark:hover:text-third' size="3x" />
                     </a>
-                    <a href="https://www.instagram.com/kdk.yolaandika" target="_blank" rel="noopener noreferrer">
+                    <a href={contactConfig.instagram.url} target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faInstagram} className='dark:text-white text-black hover:text-third dark:hover:text-third' size="3x" />
                     </a>
-                    <a href="mailto:ikadekyolaandika02@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <a href={`mailto:${contactConfig.email}`} target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faEnvelope} className='dark:text-white text-black hover:text-third dark:hover:text-third' size="3x" />
                     </a>
                 </div>
